@@ -58,3 +58,13 @@ Updates made to the public repository will now be available on your computer. Ho
 ```
 git push
 ```
+
+## Committing and submitting assingments
+
+When you have finished working on an assignment, execute the following command to commit your changes. Committing serves as a checkpoint that allows git to track changes to your repository. A commit message (the string following `-m`) is usually included with a commit to describe the changes made.
+
+```
+git commit -m "a commit message"
+```
+
+In order to submit your assignments, first push solution to your private repo on GitHub using `git push`. On Gradescope's assignment submission page, choose GitHub as your submission method and select your private repo from the dropdown menu.
