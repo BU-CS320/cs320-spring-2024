@@ -21,14 +21,14 @@ https://github.com/qcfu-bu/cs320-spring-2024-private
 
 Then mirror-push the class repo into your own private repo:
 ```
-git -C ./cs320-spring-2024 push --mirror https://github.com/qcfu/cs320-spring-2024-private
+git -C ./cs320-spring-2024 push --mirror https://github.com/qcfu-bu/cs320-spring-2024-private
 ```
 
 ### Step 3:
 
 Clone your private repository. All the work you do for this course should be done in your private repository.
 ```
-git clone https://github.com/qcfu/cs320-spring-2024-private
+git clone https://github.com/qcfu-bu/cs320-spring-2024-private
 ```
 
 ### Step 4:
