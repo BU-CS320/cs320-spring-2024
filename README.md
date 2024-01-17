@@ -15,7 +15,8 @@ git clone https://github.com/qcfu-bu/cs320-spring-2024
 
 ### Step 2:
 
-Please create a *private* repository of your own on GitHub. For instance, the following one is created for my own use:
+Please create a *private* repository of your own on GitHub.  
+For instance, the following one is created for my own use:
 
 https://github.com/qcfu-bu/cs320-spring-2024-private
 
