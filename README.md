@@ -45,7 +45,7 @@ rm -rf cs320-spring-2024
 ```
 
 
-## Syncing your private mirror with this repository
+## Syncing your private mirror with the public repository
 
 Remember to sync with the class repo frequently. To sync with the public repo, run the following commands inside your `cs320-spring-2024-private` directory.
 ```
