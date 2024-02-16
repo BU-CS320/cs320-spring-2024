@@ -81,7 +81,7 @@
      }
 
    let b =
-     { numn_rows = 1 ;
+     { num_rows = 1 ;
        num_cols = 2 ;
        rows = [[1.; 2.]] ;
      }
