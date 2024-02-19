@@ -38,7 +38,7 @@
    such that
 
    - i * i + j * j = k * k
-   - i < j < k <= n
+   - i < j < k < n
 
    You should use the `for_loop` function and mimic the structure of
    the above Python code.  See the example `test` below for how to use
