@@ -1,0 +1,162 @@
+\documentclass{article}
+
+% packages for math
+\usepackage{amsthm, amsmath, amssymb, amsfonts}
+
+% package for including images
+\usepackage{graphicx}
+
+% environment for solutions
+\theoremstyle{remark} \newtheorem*{solution}{Solution}
+
+% capital letters for problem parts
+\renewcommand{\theenumi}{\Alph{enumi}}
+
+% no page numbers
+\pagenumbering{gobble}
+
+% codeblock
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.95}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=[1]{\color{blue}},
+    keywordstyle=[2]{\color{blue}},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\title{
+Assignment 5
+}
+\author{CAS CS 320: Principles of Programming Languages}
+\date{Due: \textbf{Friday March 8, 2024 by 11:59PM}}
+
+\begin{document}
+\maketitle
+\section*{Submission Instructions}
+\begin{itemize}
+\item
+You will submit a \texttt{.pdf} of your solutions on Gradescope.  Your
+solutions must be legible. If you do not have neat handwriting, please
+type your solutions.
+\item
+\textbf{Put a box around the final answer in your solution.}  Or
+otherwise make the final answer in your solution abundantly clear.
+\item
+Choose the correct pages corresponding to each problem in Gradescope.
+Note that Gradescope registers your submission as soon as you submit
+it, so you don’t need to rush to choose corresponding pages.
+\textbf{For multipart questions, please make sure each part is
+  accounted for.}
+\end{itemize}
+We will dock points if any of these instructions are not followed.
+
+\pagebreak
+\section{ABCs}
+Consider the following BNF Grammar.
+\begin{lstlisting}
+<START> ::= <a>|<b>|<c>
+<a>     ::= A<b>|AA<b>
+<b>     ::= B<b>|AB<b>|AB<c>
+<c>     ::= C|C<c>B
+\end{lstlisting}
+
+\begin{enumerate}
+\item
+Give two different derivations of the sentence \texttt{AABABC}.
+\item
+Find every (derivable) sentence with 5 terminal symbols.  Circle (or
+otherwise mark) any sentences which can be derived in multiple ways.
+\end{enumerate}
+
+\begin{solution}
+\end{solution}
+
+\pagebreak
+\section{BNF Derivations}
+
+Consider the following BNF Grammar.
+\begin{lstlisting}
+<PROG>  ::= <stmts>
+<stmts> ::= <stmt>|<stmt> <stmts>
+<stmt>  ::= let <var> = <val>
+<var>   ::= x|<var>'
+<val>   ::= <var>|fun <var> -> <val>|(<val> <val>)
+\end{lstlisting}
+Give a derivation of the sentence
+\begin{lstlisting}
+let x = fun x -> x let x' = (x x)
+\end{lstlisting}
+You may apply rules in parallel, e.g., you may write
+\begin{lstlisting}
+let <var> = <var>  ==>
+let x = x
+\end{lstlisting}
+instead of
+\begin{lstlisting}
+let <var> = <var>  ==>
+let x = <var>      ==>
+let x = x
+\end{lstlisting}
+but you cannot write
+\begin{lstlisting}
+let x = <val>  ==>
+let x = x
+\end{lstlisting}
+because this would apply the rule for \texttt{<val>} and then the rule
+for \texttt{<var>} on nonterminal symbols appearing in the same
+position.
+
+\begin{solution}
+\end{solution}
+
+\pagebreak
+\begin{solution}
+(Continued)
+\end{solution}
+
+\pagebreak
+\section{Integer Literals}
+
+Complete the BNF grammar below for integer literals based on the following informal rules.
+\begin{itemize}
+\item A positive integer literal is any sequence of digits \texttt{0} through \texttt{9}, not starting with the digit \texttt{0}.
+\item A negative integer literal is a positive integer literal with a negation symbol `\texttt{-}' in front of it.
+\item An integer literal is \texttt{0}, a positive integer literal, or a negative integer literal.
+\end{itemize}
+
+\begin{lstlisting}
+<INT>    ::= ???
+<pdigit> ::= 1|2|3|4|5|6|7|8|9
+<digit>  ::= 0|<pdigit>
+<digits> ::= ???
+<pint>   ::= ???
+<nint>   ::= ???
+\end{lstlisting}
+\texttt{<digits>} represents any sequence of digits, \texttt{<pint>}
+represents positive integers, and \texttt{<nint>} represents negative
+integers.
+
+\begin{solution}
+\end{solution}
+
+\end{document}
