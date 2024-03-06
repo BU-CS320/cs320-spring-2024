@@ -18,13 +18,43 @@ non-terminal symbols: `<digit>, <expr>`
 ```
 1 + 1
 
-<expr> = 
+left-most derivation
+<expr> = <expr> + <expr>
+       = <digit> + <expr>
+       = 1 + <expr>
+       = 1 + <digit>
+       = 1 + 1
+
+right-most derivation
+<expr> = <expr> + <expr>
+       = <expr> + <digit>
+       = <expr> + 1
+       = <digit> + 1
+       = 1 + 1
 ```
 
 ```
 1 + 2 + 3
 
-<expr> =
+left-most
+<expr> = <expr> + <expr>
+       = <digit> + <expr>
+       = 1 + <expr>
+       = 1 + <expr> + <expr>
+       = 1 + <digit> + <expr>
+       = 1 + 2 + <expr>
+       = 1 + 2 + <digit>
+       = 1 + 2 + 3
+
+left-most
+<expr> = <expr> + <expr>
+       = <expr> + <expr> + <expr>
+       = <digit> + <expr> + <expr>
+       = 1 + <expr> + <expr>
+       = 1 + <digit> + <expr>
+       = 1 + 2 + <expr>
+       = 1 + 2 + <digit>
+       = 1 + 2 + 3
 ```
 
 Question: Are the following sentential forms derivable?
@@ -48,13 +78,32 @@ non-terminal symbols: `<digit>, <number>, <expr>`
 ```
 1 + 1
 
-<expr> =
+<expr> = <expr> + <expr>
+       = <number> + <expr>
+       = <digit> + <expr>
+       = 1 + <expr>
+       = 1 + <number>
+       = 1 + <digit>
+       = 1 + 1
 ```
 
 ```
 12 + 2 + 3
 
-<expr> =
+left-most
+<expr> = <expr> + <expr>
+       = <expr> + <expr> + <expr>
+       = <number> + <expr> + <expr>
+       = <digit><number> + <expr> + <expr>
+       = 1<number> + <expr> + <expr>
+       = 1<digit> + <expr> + <expr>
+       = 12 + <expr> + <expr>
+       = 12 + <number> + <expr>
+       = 12 + <digit> + <expr>
+       = 12 + 2 + <expr>
+       = 12 + 2 + <number>
+       = 12 + 2 + <digit>
+       = 12 + 2 + 3
 ```
 
 Question: Are the following sentential form derivable?
@@ -80,7 +129,126 @@ non-terminal symbols: `<digit>, <number>, <expr>`
 ```
 1 + (2 * 33)
 
-<expr> =
+left-most
+<expr> = <expr> + <expr>
+       = <number> + <expr>
+       = <digit> + <expr>
+       = 1 + <expr>
+       = 1 + ( <expr> )
+       = 1 + ( <expr> * <expr> )
+       = 1 + ( <number> * <expr> )
+       = 1 + ( <digit> * <expr> )
+       = 1 + ( 2 * <expr> )
+       = 1 + ( 2 * <number> )
+       = 1 + ( 2 * <digit><number> )
+       = 1 + ( 2 * 3<number> )
+       = 1 + ( 2 * 3<digit> )
+       = 1 + ( 2 * 33 )
+```
+
+## Language 4
+
+```
+1 + 2 + 3
+
+        <expr>
+       /      \
+    <expr> + <expr>
+    /   \         \
+ <expr> + <expr>   ..
+   |        |       3
+   ..       ..
+   1         2
+
+        <expr>
+       /      \
+    <expr> + <expr>
+      |       /   \
+     ..    <expr> + <expr>
+     1       |        |
+             ..       ..
+             2        3
+
+1 + 2 * 3
+
+(1 + 2) * 3    wrong
+1 + (2 * 3)    correct
+
+
+1 + 2 + 3
+(1 + 2) + 3  left associative symbol
+
+A -> B -> C
+A -> (B -> C) right associative symbol
+```
+
+Goals:
+- Unambiguous
+- `*` to have higher precedence than `+`
+- `*, +` to be left associative
+
+```
+<digit>  ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+<number> ::= <digit> | <digit><number>
+
+<expr0> ::= <number>
+          | ( <expr> )
+
+<expr1> ::= <expr0> | <expr1> * <expr0>
+
+<expr2> ::= <expr1> | <expr2> + <expr1>
+
+<expr> ::= <expr2>
+```
+
+```
+1 + 2 * 3
+
+
+               <expr>
+                 |
+               <expr2>
+              /       \
+           <expr2> +   <expr1>
+            |          /     \
+           <expr1> <expr1> * <expr0>
+            |         |        |
+           <expr0> <expr0>   <number>
+            |         |        |
+           <number> <number> <digit>
+            |         |        |
+           <digit>  <digit>    3
+            |         |
+            1         2
+
+
+(1 + 2) * 3
+
+       <expr>
+         |
+       <expr2>
+         |
+       <expr1>
+       /     \
+    <expr1> * <expr0>
+     |          |
+    <expr0>   <number>
+     |          |
+ ( <expr> )   <digit>
+     |          |
+   <expr2>      3
+   /   \
+<expr2> + <expr1>
+  |         |
+<expr1>   <expr0>
+  |         |
+<expr0>   <number>
+  |         |
+<number>  <digit>
+  |         |
+<digit>     2
+  |
+  1
 ```
 
 ## Representing Languages as Trees
