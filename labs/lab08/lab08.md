@@ -18,31 +18,13 @@ non-terminal symbols: `<digit>, <expr>`
 ```
 1 + 1
 
-<expr> = <expr> + <expr>
-       = <digit> + <expr>
-       = 1 + <expr>
-       = 1 + <digit>
-       = 1 + 1
+<expr> = 
 ```
 
 ```
 1 + 2 + 3
 
-<expr> = <expr> + <expr>
-       = <expr> + <expr> + <expr>
-       = <digit> + <expr> + <expr>
-       = 1 + <expr> + <expr>
-       = 1 + <digit> + <expr>
-       = 1 + 2 + <expr>
-       = 1 + 2 + <digit>
-       = 1 + 2 + 3
-       
-<expr> = <expr> + <expr>
-       = <digit> + <expr>
-       = 1 + <expr>
-       = 1 + <expr> + <expr>
-       ...
-       = 1 + 2 + 3
+<expr> =
 ```
 
 Question: Are the following sentential forms derivable?
@@ -66,31 +48,13 @@ non-terminal symbols: `<digit>, <number>, <expr>`
 ```
 1 + 1
 
-<expr> = <expr> + <expr>
-       = <number> + <expr>
-       = <digit> + <expr>
-       = 1 + <expr>
-       = 1 + <number>
-       = 1 + <digit>
-       = 1 + 1
+<expr> =
 ```
 
 ```
 12 + 2 + 3
 
-<expr> = <expr> + <expr>
-       = <expr> + <expr> + <expr>
-       = <number> + <expr> + <expr>
-       = <digit><number> + <expr> + <expr>
-       = 1<number> + <expr> + <expr>
-       = 1<digit> + <expr> + <expr>
-       = 12 + <expr> + <expr>
-       = 12 + <number> + <expr>
-       = 12 + <digit> + <expr>
-       = 12 + 2 + <expr>
-       = 12 + 2 + <number>
-       = 12 + 2 + <digit>
-       = 12 + 2 + 3
+<expr> =
 ```
 
 Question: Are the following sentential form derivable?
@@ -116,20 +80,7 @@ non-terminal symbols: `<digit>, <number>, <expr>`
 ```
 1 + (2 * 33)
 
-<expr> = <expr> + <expr>
-       = <number> + <expr>
-       = <digit> + <expr>
-       = 1 + <expr>
-       = 1 + ( <expr> )
-       = 1 + ( <expr> * <expr> )
-       = 1 + ( <number> * <expr> )
-       = 1 + ( <digit> * <expr> )
-       = 1 + ( 2 * <expr> )
-       = 1 + ( 2 * <number> )
-       = 1 + ( 2 * <digit><number> )
-       = 1 + ( 2 * 3<number> )
-       = 1 + ( 2 * 3<digit> )
-       = 1 + ( 2 * 33 )
+<expr> =
 ```
 
 ## Representing Languages as Trees
