@@ -1,0 +1,205 @@
+\documentclass{article}
+
+% packages for math
+\usepackage{amsthm, amsmath, amssymb, amsfonts}
+
+% package for including images
+\usepackage{graphicx}
+
+% environment for solutions
+\theoremstyle{remark} \newtheorem*{solution}{Solution}
+
+% capital letters for problem parts
+\renewcommand{\theenumi}{\Alph{enumi}}
+
+% no page numbers
+\pagenumbering{gobble}
+
+% codeblock
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.95}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=[1]{\color{blue}},
+    keywordstyle=[2]{\color{blue}},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\usepackage{syntax}
+\setlength{\grammarindent}{6em}
+
+\usepackage{mdframed}
+
+\title{
+Assignment 6
+}
+\author{CAS CS 320: Principles of Programming Languages}
+\date{Due: \textbf{Friday March 22, 2024 by 11:59PM}}
+
+\begin{document}
+\maketitle
+\section*{Submission Instructions}
+\begin{itemize}
+\item
+You will submit a \texttt{.pdf} of your solutions on Gradescope.  Your
+solutions must be legible. If you do not have neat handwriting, please
+type your solutions.
+\item
+\textbf{Put a box around the final answer in your solution.}  Or
+otherwise make the final answer in your solution abundantly clear.
+\item
+Choose the correct pages corresponding to each problem in Gradescope.
+Note that Gradescope registers your submission as soon as you submit
+it, so you don’t need to rush to choose corresponding pages.
+\textbf{For multipart questions, please make sure each part is
+  accounted for.}
+\end{itemize}
+We will dock points if any of these instructions are not followed.
+
+\pagebreak
+\section{A Simple Ambiguous Grammar}
+
+\begin{mdframed}
+\begin{grammar}
+<start> ::= \lit*{A} <start> \lit*{B}
+\alt <a>
+
+<a> ::= \lit*{A} <a>
+\alt \lit*{A} <b>
+
+<b> ::= \lit*{B} \lit*{B} <b>
+\alt \lit*{B} \lit*{B}
+
+\end{grammar}
+\end{mdframed}
+
+\begin{enumerate}
+\item
+Find the \textit{shortest} sentence which has multiple
+derivations. You do not need to write down the derivations.
+\item
+Write down a right linear regular grammar for the set of sentences of
+the above grammar which have \textit{at least 2 \texttt{A} symbols and
+  at least 2 \texttt{B} symbols.}
+\item
+Write down a regular expression for the set of sentences of the above
+grammar.
+
+\end{enumerate}
+
+
+\pagebreak
+\section{A More Interesting Ambiguous Grammar}
+
+Consider the following EBNF grammar. Note that there are two uses of
+parentheses, one which is part of the language and one which is part
+of EBNF syntax.  Also note the use of the visible space symbol
+`\textvisiblespace' which indicates that a space \textit{must} appear
+in the sentence (whereas we typically use whitespace for convenience to visually separate terminal symbols).
+
+\begin{mdframed}
+\begin{grammar}
+<prgm> ::= $\{$ \lit*{LET} <idnt> \lit*{=} <expr> $\}$
+
+<expr> ::=
+\lit*{FUN} <idnt> \lit*{=>} <expr>
+\alt \lit*{CASE} <expr> \lit*{OF} $\{$ \lit*{/} <pat> \lit*{->} <expr> $\}$
+\alt <term> $\{$ ( \lit*{+} | \lit*{-} ) <term>$\}$
+
+<term> ::= (<idnt> | <num> | \lit*{(} <expr> \lit*{)}) [ \lit*{\textvisiblespace} <term> ]
+
+<pat> ::= <idnt> | <num> | \lit*{*}
+
+<num> ::= (\lit*{0} | \lit*{1} | \lit*{2} | $\dots$ | \lit*{9}) $\{$ \lit*{0} | \lit*{1} | \lit*{2} | $\dots$ | \lit*{9} $\}$
+
+<idnt> ::= (\lit*{a} | \lit*{b} | \lit*{c} | $\dots$ | \lit*{z}) $\{$ \lit*{a} | \lit*{b} | \lit*{c} | $\dots$ | \lit*{z} $\}$
+
+\end{grammar}
+\end{mdframed}
+\begin{enumerate}
+\item
+\textbf{TRUE} or \textbf{FALSE}, the following program has a
+derivation in the above grammar:
+\begin{lstlisting}[mathescape=true]
+LET fib = FUN x =>
+  CASE x OF
+  / 0 -> 0
+  / 1 -> 1
+  / n -> fib$\text{\textvisiblespace}$(n - 1) + fib$\text{\textvisiblespace}$(n - 2)
+\end{lstlisting}
+\pagebreak
+\item Give a derivation for the following program.
+\begin{lstlisting}
+LET z = FUN x =>
+  CASE x OF
+  / 0 -> 1
+  / * -> 0
+\end{lstlisting}
+\textit{Notes.}
+\begin{itemize}
+\item
+The newlines are for visual convenience, your derivation should end in
+the single line
+\begin{lstlisting}
+LET z = FUN x => CASE x OF / 0 -> 1 / * -> 0
+\end{lstlisting}
+\item
+The sentential form may become somewhat wide. You may shorten terminal
+and nonterminal symbols if it is sufficiently clear.
+\item
+You may replace nonterminal symbols in parallel, as in the previous
+assignment.
+\item
+Do not include EBNF syntax in the derivation, you should immediately
+replace the EBNF syntax with a corresponding sentential form, e.g.,
+\begin{lstlisting}
+<num>  ==> 00120
+
+<expr> ==>
+CASE <expr> OF / <pat> -> <expr> / <pat> -> <expr>
+\end{lstlisting}
+\end{itemize}
+\pagebreak
+\item
+Rewrite the production rule for \texttt{<term>} using standard BNF
+syntax.  You may not introduce new nonterminal symbols.
+\item
+Demonstrate that this grammar is ambiguous by finding a sentence which
+has multiple derivations.  You do not need to give the derivations.
+\item
+Change the above grammar by introducing a single terminal symbol so
+that it is no longer ambiguous.  You don't need to reproduce the
+entire grammar, just give the production rule where you put the
+terminal symbol.
+\end{enumerate}
+
+
+\pagebreak
+\section{Regular Grammars and Expressions}
+\begin{enumerate}
+\item Write down a regular expression which recognizes all binary strings without a contiguous subsequence of \texttt{1}s of length $3$, e.g., $\epsilon$ and \texttt{001} and \texttt{00110001001000001} but not \texttt{111} or \texttt{0011000101111001}.
+\item Write down a right linear regular grammar which recognizes all binary strings with an odd number of zeros and an odd number of ones, e.g., \texttt{01} and \texttt{001011} but not \texttt{001100010} or \texttt{0011} (\textit{Note.} It would be a fair amount more difficult to give a regular expression, even though the two representations are equivalent in expressivity).
+\item Write down a regular expression which recognizes all strings of characters without whitespace or parentheses which represent (possibly empty) \texttt{int list}'s of \texttt{0}'s in OCaml, e.g., \texttt{0::0::[]} and \texttt{{0::[0;0;0]}} and \texttt{[0;]} (note the optional trailing semicolon) and \texttt{[]}.
+\end{enumerate}
+
+
+\end{document}
