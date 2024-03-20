@@ -2,7 +2,7 @@
    Write an EBNF grammar for regular expressions for binary strings.
 
    Quantification has highest precedence (e.g., 01* is
-   implicitly parenthesized as 0( 1* ) and a|b* as 0|( 1* ).
+   implicitly parenthesized as 0( 1* ) and 0|1* as 0|( 1* ).
 
    Grouping has second highest precedence, so 0|11 is 0|(11),
    Associativity does not matter.
