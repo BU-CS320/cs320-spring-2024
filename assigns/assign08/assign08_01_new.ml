@@ -240,7 +240,7 @@ let parse_symbol : symbol parser = (* TODO *)
 (* A complex symbol is given by the following grammar:
 
    <symbols>         ::= <symbol> { <symbol> } | EMPTY
-   <alt-symbol-list> ::= <symbosl> { '|' <symbols> }
+   <alt-symbol-list> ::= <symbols> { '|' <symbols> }
    <symbol-complex> ::= '{' <alt-symbol-list> '}'
                       | '[' <alt-symbol-list> ']'
                       | <symbol>
