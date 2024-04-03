@@ -241,9 +241,9 @@ let parse_symbol : symbol parser = (* TODO *)
 
    <symbols>         ::= <symbol> { <symbol> } | EMPTY
    <alt-symbol-list> ::= <symbols> { '|' <symbols> }
-   <symbol-complex> ::= '{' <alt-symbol-list> '}'
-                      | '[' <alt-symbol-list> ']'
-                      | <symbol>
+   <symbol-complex>  ::= '{' <alt-symbol-list> '}'
+                       | '[' <alt-symbol-list> ']'
+                       | <symbol>
 
    Note that this implies there cannot be a repetitions or optionals
    within other repetitions or optionals.
