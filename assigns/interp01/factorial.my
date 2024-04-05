@@ -1,0 +1,32 @@
+def ISNEG
+  0 swap <
+;
+
+def DECR
+  1 swap -
+;
+
+def FACTORIAL
+  dup #ISNEG ? drop 1 0 - ;
+  dup 0 = ? drop 1 ;
+  dup 1 < ?
+    dup
+    #DECR
+    #FACTORIAL
+    *
+  ;
+;
+
+def FACTHELP
+  dup 1 < ?
+    dup OUT * |> OUT
+    #DECR
+    #FACTHELP
+  ;
+;
+
+def FACT
+  1 |> OUT
+  #FACTHELP
+  drop OUT
+;
