@@ -188,7 +188,7 @@ type env = (ident * value) list
 type trace = string list
 
 let update_env = assert false (* TODO *)
-let lookup_env = assert false (* TODO *)
+let fetch_env = assert false (* TODO *)
 let eval_prog = assert false (* TODO *)
 let interp = assert false (* TODO *)
 
