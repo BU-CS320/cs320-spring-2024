@@ -1,0 +1,29 @@
+(sqrt): |> n
+  (if) 0 n < ? Return ; ;
+  (if) 0 n = ? 0 Return ; ;
+  0 |> i
+  While n i < ;
+    (if) i i * n < ?
+      i -1 + Return ;
+    (else)
+      i 1 + |> i
+    ;
+  ;
+; |> sqrt
+
+(is_prime): |> n
+  (if) 2 n < ? False Return ; ;
+  2 |> i
+  n sqrt # |> s
+  While s i < ;
+    (if) i n / i * n = ?
+      False Return ;
+    (else)
+      i 1 + |> i
+    ;
+  ;
+  True Return
+; |> is_prime
+
+"Is 15261281789861 prime? (yes):"
+15261281789861 is_prime # .

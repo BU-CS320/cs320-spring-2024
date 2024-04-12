@@ -1,0 +1,14 @@
+(f):
+  0 |> x
+  (g):
+    (h):
+      x .
+    ;
+    Return
+  ; #
+  Return
+; |> f
+
+"Calling the output of f (should print 0):"
+f # |> g
+g #

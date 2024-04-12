@@ -1,0 +1,18 @@
+(f):
+  0 |> x
+  (g):
+    (h):
+      x .
+    ;
+    Return
+  ;
+  Return
+; |> f
+
+f # # |> q
+
+"Calling withing another function (should print 0):"
+(a):
+  1 |> x
+  q #
+; #

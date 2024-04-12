@@ -1,0 +1,27 @@
+(fib): |> n
+  (if)
+    n 0 =
+    n 1 =
+    || ?
+  (then)
+    n Return ;
+  (else)
+    -1 n + fib # |> x
+    -2 n + fib # |> y
+    x y + Return ;
+; |> fib
+
+"10th Fibonacci Number:"
+10 fib # .
+
+(print_fib): |> n
+  0 |> count
+  While count n = ~ ;
+    count fib # .
+    count 1 + |> count
+  ;
+; |> print_fib
+
+""
+"The first 10 Fibonacci Numbers:"
+10 print_fib #
