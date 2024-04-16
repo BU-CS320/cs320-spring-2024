@@ -131,7 +131,7 @@ and value
 type record =
   { id : int
   ; local : bindings
-  ; caller_def_id : int
+  ; called_def_id : int
   ; return_prog : program
   }
 
