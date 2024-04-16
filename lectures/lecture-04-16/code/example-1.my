@@ -1,0 +1,16 @@
+(f):
+  x Return
+; |> f
+
+(g): |> x
+  f # |> y
+  x y + |> out
+  out Return
+; |> g
+
+(h): |> x |> y
+  x y + g # Return
+; |> h
+
+1 |> x
+x x h # |> x

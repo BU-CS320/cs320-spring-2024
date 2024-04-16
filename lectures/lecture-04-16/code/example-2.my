@@ -1,0 +1,11 @@
+(factorial): |> n
+  (if) n 0 = ?
+    1 Return ;
+  (else)
+    n -1 + factorial # |> rec_call
+    rec_call n * |> out
+    out Return
+  ;
+; |> factorial
+
+10 factorial # |> fact_10
