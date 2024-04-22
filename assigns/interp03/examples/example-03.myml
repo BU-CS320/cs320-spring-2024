@@ -1,0 +1,26 @@
+let x _ =
+  let _ = trace true in
+  true
+
+let y _ =
+  let _ = trace false in
+  false
+
+(*
+
+should print:
+-------------
+
+true
+false
+true
+true
+false
+false
+
+*)
+
+let _ = x () || y ()
+let _ = y () || x ()
+let _ = x () && y ()
+let _ = y () && x ()

@@ -1,0 +1,19 @@
+let x _ =
+  let _ = trace 10 in
+  10
+
+let y _ =
+  let _ = trace 7 in
+  7
+
+(*
+
+should print:
+-------------
+7
+10
+17
+
+*)
+
+let _ = trace (x () + y ())

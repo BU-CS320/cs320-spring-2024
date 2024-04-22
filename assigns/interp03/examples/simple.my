@@ -1,0 +1,34 @@
+fun DUP
+begin
+	swap
+	assign TEMP
+	lookup TEMP
+	swap
+	lookup TEMP
+	swap
+	return
+end
+assign DUP
+
+fun INCR
+begin
+	swap
+	assign X
+	push 1
+	lookup X
+	add
+	swap
+	return
+end
+assign INCR
+
+push 2
+lookup INCR
+call
+trace
+
+push 10
+lookup DUP
+call
+trace
+trace

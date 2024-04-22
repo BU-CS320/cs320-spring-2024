@@ -1,0 +1,13 @@
+let modulo n i = n - i * (n / i)
+
+let is_perfect n =
+  let phi i res =
+    if i < 1 then res
+    else if modulo n i = 0 then phi (i - 1) (res + i)
+    else phi (i - 1) res
+  in
+  phi (n - 1) 0 = n
+
+let _ = trace (is_perfect 6)
+let _ = trace (is_perfect 28)
+let _ = trace (not (is_perfect 24))

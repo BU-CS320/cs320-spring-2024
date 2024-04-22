@@ -1,0 +1,19 @@
+let x _ =
+  let _ = trace 10 in
+  10
+
+let y _ =
+  let _ = trace true in
+  true
+
+(*
+
+should print:
+-------------
+
+true
+panic
+
+*)
+
+let _ = trace (x () + y ())

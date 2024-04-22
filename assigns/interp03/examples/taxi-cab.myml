@@ -1,0 +1,37 @@
+let abs n =
+  if n < 0 then -n else n
+
+let _ = trace (abs (-10))
+
+let is_perfect_cube n =
+  let n = abs n in
+  let go i =
+    let cube = i * i * i in
+    cube <= n && (cube = n || go (i + 1))
+  in go 0
+
+let _ = trace (is_perfect_cube 8)
+let _ = trace (is_perfect_cube 27)
+let _ = trace (is_perfect_cube 64)
+let _ = trace (is_perfect_cube (-64))
+let _ = trace (not (is_perfect_cube 24))
+
+let to_int b = if b then 1 else 0
+
+let taxicab n =
+  let go i =
+    let diff = n - i * i * i in
+    let check _ =
+      0 < diff
+      && diff <= i * i * i
+      && is_perfect_cube diff
+    in
+    if i <= 0
+    then 0
+    else to_int (check ()) + go (i - 1)
+  in go n
+
+let _ = trace (taxicab 2)
+let _ = trace (taxicab 5)
+let _ = trace (taxicab 1729)
+let _ = trace (taxicab 4104)

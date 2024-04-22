@@ -1,0 +1,11 @@
+fun SQDIST
+begin
+  swap assign X swap assign Y
+  lookup X lookup X mul
+  lookup Y lookup Y mul
+  add swap return
+end
+assign SQDIST
+
+push 2 push 3 lookup SQDIST call
+trace
